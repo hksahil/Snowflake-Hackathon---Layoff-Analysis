@@ -20,9 +20,8 @@ def snowflake_loader(table_name):
     return table
 
 # Table present in Snowflake
-table_name = "STREAMLIT_DEMO.STREAMLIT.LAYOFFS"
+table_name = "STREAMLIT_DEMO.STREAMLIT.LAYOFFS" 
 
 # Displaying data
 df = snowflake_loader(table_name)
 st.dataframe(df)
-AgGrid(df)
