@@ -6,7 +6,7 @@ from streamlit_extras.switch_page_button import switch_page
 from PIL import Image
 
 # Configure Page Title and Icon
-st.set_page_config(page_title='Layoffs Analysis',page_icon=':smile:')
+st.set_page_config(page_title='Layoffs Analysis',page_icon=':🏡:')
 
 st.title('Layoffs :red[Tracker] 💼🚪 ')
 
