@@ -19,7 +19,7 @@ with col2:
     next = st.button("➡️",help='Next Page')
 
 if next:
-     switch_page("Playground for Analysis")
+     switch_page("Relief Funds")
 if back:
      switch_page("Impact on Industries")
 
