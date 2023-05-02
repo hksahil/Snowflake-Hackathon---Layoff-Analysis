@@ -3,6 +3,11 @@ from snowflake.snowpark import Session
 import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 from streamlit_extras.metric_cards import style_metric_cards
+import folium
+from streamlit_folium import folium_static
+import folium
+from folium.plugins import MarkerCluster
+import pandas as pd
 
 # Configure Page Title and Icon
 st.set_page_config(page_title='Overall Impact',page_icon='📊')
@@ -75,14 +80,6 @@ if year is not None:
 st.info('Explore the Companies around the world that have made layoffs by clicking the circles on the map')
 
 ########## MAP
-import streamlit as st
-import folium
-from streamlit_folium import folium_static
-import folium
-from folium.plugins import MarkerCluster
-import pandas as pd
-
-
 def generate_map(layoff_df):
     layoff_df = layoff_df.dropna(subset=['LATITUDE', 'LONGITUDE'])
 
@@ -95,7 +92,7 @@ def generate_map(layoff_df):
     # Loop through the data and add markers to the marker cluster layer for unique companies only
     for index, row in layoff_df.iterrows():
         if row['COMPANY'] not in unique_companies:
-            folium.Marker(location=[row['LATITUDE'], row['LONGITUDE']], popup=row['COMPANY']).add_to(marker_cluster)
+            folium.Marker(location=[row['LATITUDE'], row['LONGITUDE']], popup=row['COMPANY'],color="red").add_to(marker_cluster)
             unique_companies.add(row['COMPANY'])
     return m
 
