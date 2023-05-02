@@ -2,10 +2,10 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 from annotated_text import annotated_text
 import openai
-openai.api_key=st.secrets["secret_key"]
+openai.api_key=st.secrets['secret_key']
 
 # Configure Page Title and Icon
-st.set_page_config(page_title='Track my Job',page_icon=':smile:')
+st.set_page_config(page_title='Track my Job',page_icon='📊')
 
 st.title('Layoffs :red[Tracker] 💼🚪 ')
 
