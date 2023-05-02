@@ -6,7 +6,7 @@ from streamlit_extras.dataframe_explorer import dataframe_explorer
 from annotated_text import annotated_text
 
 # Configure Page Title and Icon
-st.set_page_config(page_title='Playground for Analysis',page_icon=':smile:')
+st.set_page_config(page_title='Playground for Analysis',page_icon='📊')
 
 
 st.title('Layoffs :red[Tracker] 💼🚪 ')
