@@ -5,7 +5,7 @@ from streamlit_extras.switch_page_button import switch_page
 import altair as alt
 
 # Configure Page Title and Icon
-st.set_page_config(page_title='Impact over Time',page_icon=':smile:')
+st.set_page_config(page_title='Impact over Time',page_icon='📊')
 
 
 st.title('Layoffs :red[Tracker] 💼🚪 ')
@@ -65,6 +65,8 @@ chart = chart.configure_axis(
     grid=False,
     domain=False,
     tickSize=0
+).properties(
+   height=450,  # set height to 400 pixels
 )
 
 #### Annotated Text
