@@ -4,11 +4,11 @@ import pandas as pd
 from streamlit_extras.switch_page_button import switch_page
 from wordcloud import WordCloud
 import math
-from matplotlib.colors import ListedColormap
 import numpy as np
+from annotated_text import annotated_text
 
 # Configure Page Title and Icon
-st.set_page_config(page_title='Impact on Industries',page_icon=':smile:')
+st.set_page_config(page_title='Impact on Industries',page_icon='📊')
 
 st.title('Layoffs :red[Tracker] 💼🚪 ')
 
@@ -58,7 +58,6 @@ wordcloud = WordCloud(width=600, height=400, background_color='white').generate_
 
 
 #### Annotated Text
-from annotated_text import annotated_text
 annotated_text(
     "💡 Highest number of layoffs are in ",
     ("Consumer ",'',"#faa"),
