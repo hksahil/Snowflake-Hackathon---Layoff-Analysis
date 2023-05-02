@@ -5,7 +5,7 @@ from streamlit_extras.switch_page_button import switch_page
 from annotated_text import annotated_text
 
 # Configure Page Title and Icon
-st.set_page_config(page_title='Impact on Companies',page_icon=':smile:')
+st.set_page_config(page_title='Impact on Companies',page_icon='📊')
 
 st.title('Layoffs :red[Tracker] 💼🚪 ')
 
@@ -59,11 +59,14 @@ import altair as alt
 chart1 = alt.Chart(sorted_df_company).mark_bar().encode(
     x=alt.X('LAID_OFF_COUNT:Q'),
     y=alt.Y('COMPANY:O', sort='-x'),
-    text='LAID_OFF_COUNT:Q'
+    text='LAID_OFF_COUNT:Q',
+    color=alt.Color('LAID_OFF_COUNT:Q', scale=alt.Scale(scheme='blues'))
 ).configure_axis(
     grid=False,  # hide grid lines
     domain=False,  # hide axis line and ticks
-)  
+).properties(
+   height=300,  # set height to 400 pixels
+)
 
 annotated_text(
     ("💡 Tech gaints like Amazon, Meta & Google have laid off more than"),
