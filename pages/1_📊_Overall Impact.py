@@ -5,18 +5,7 @@ from streamlit_extras.switch_page_button import switch_page
 from streamlit_extras.metric_cards import style_metric_cards
 
 # Configure Page Title and Icon
-st.set_page_config(page_title='Overall Impact',page_icon=':smile:')
-# --------- Removing Streamlit's Hamburger and Footer starts ---------
-hide_st_style = """
-            <style>
-            .css-1y4p8pa {
-                width: 100%;
-                padding: 3rem 1rem 3rem !important;
-                max-width: 46rem;
-                }
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+st.set_page_config(page_title='Overall Impact',page_icon='📊')
 
 st.title('Layoffs :red[Tracker] 💼🚪 ')
 
@@ -98,7 +87,7 @@ def generate_map(layoff_df):
     layoff_df = layoff_df.dropna(subset=['LATITUDE', 'LONGITUDE'])
 
     # Create a map centered on the mean LATITUDE and LONGITUDE of the data
-    m = folium.Map(location=[51.5074, -0.0278], zoom_start=1.5,height=280)
+    m = folium.Map(location=[51.5074, -0.0278], zoom_start=1.5,height=400)
     # Create a marker cluster layer and add it to the map
     marker_cluster = MarkerCluster().add_to(m)
     # Create a set to keep track of the unique companies
