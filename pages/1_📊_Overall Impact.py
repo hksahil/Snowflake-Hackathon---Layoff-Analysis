@@ -84,7 +84,7 @@ def generate_map(layoff_df):
     layoff_df = layoff_df.dropna(subset=['LATITUDE', 'LONGITUDE'])
 
     # Create a map centered on the mean LATITUDE and LONGITUDE of the data
-    m = folium.Map(location=[51.5074, -0.0278], zoom_start=1.5,height=400)
+    m = folium.Map(location=[51.5074, -0.0278], zoom_start=1.5, height=400)
     # Create a marker cluster layer and add it to the map
     marker_cluster = MarkerCluster().add_to(m)
     # Create a set to keep track of the unique companies
@@ -92,9 +92,17 @@ def generate_map(layoff_df):
     # Loop through the data and add markers to the marker cluster layer for unique companies only
     for index, row in layoff_df.iterrows():
         if row['COMPANY'] not in unique_companies:
-            folium.Marker(location=[row['LATITUDE'], row['LONGITUDE']], popup=row['COMPANY'],color="red").add_to(marker_cluster)
+            popup_text = f"Company: {row['COMPANY']}<br> Laid off count: {row['LAID_OFF_COUNT']} <br><br> More Details <br> Industry: {row['INDUSTRY']} <br> HQ Location: {row['LOCATION_HQ']}  "
+            iframe = folium.IFrame(popup_text)
+            popup = folium.Popup(iframe,
+                     min_width=200,
+                     max_width=500,
+                     height=90)
+            folium.Marker(location=[row['LATITUDE'], row['LONGITUDE']], popup=popup, color="red",min_width=5000).add_to(marker_cluster)
             unique_companies.add(row['COMPANY'])
+
     return m
+
 
 
 # Generate the map
