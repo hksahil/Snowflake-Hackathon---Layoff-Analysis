@@ -47,7 +47,7 @@ table_name = "STREAMLIT_DEMO.STREAMLIT.LAYOFFS_FINAL"
 
 # Displaying data
 layoff_df=snowflake_loader(table_name)
-
+layoff_df.dropna(subset=['LAID_OFF_COUNT'], inplace=True)
 year = st.radio(
     'Select year',
     ['2021', '2022', '2023'],
