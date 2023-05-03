@@ -67,7 +67,7 @@ Employees_delta=((Employees_TY-Employees_LY)/Employees_LY)*100
 # Countries
 Countries_TY=layoff_df.loc[layoff_df['DATE'].dt.year == int(year), 'COUNTRY'].nunique()
 Countries_LY=layoff_df.loc[layoff_df['DATE'].dt.year == (int(year)-1), 'COUNTRY'].nunique()
-Countries_delta=((Companies_TY-Companies_LY)/Companies_LY)*100
+Countries_delta=((Countries_TY-Countries_LY)/Countries_LY)*100
 
 if year is not None:
     col1, col2, col3 = st.columns(3)
