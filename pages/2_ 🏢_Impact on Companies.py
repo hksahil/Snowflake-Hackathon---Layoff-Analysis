@@ -40,9 +40,21 @@ def snowflake_loader(table_name):
 # Table present in Snowflake
 table_name = "STREAMLIT_DEMO.STREAMLIT.LAYOFFS" 
 
+annotated_text(
+    ("💡 Tech gaints like Amazon, Meta & Google have laid off more than"),
+    ('50k+ employees ','','#faa')
+)
+
+year = st.radio(
+    'Select year',
+    ['2021', '2022', '2023'],
+    index=2,horizontal=True
+)
+
 # Displaying data
 layoff_df=snowflake_loader(table_name)
 
+layoff_df=layoff_df[layoff_df['DATE'].dt.year == int(year)]
 # Bar Chart of top five countries
 import matplotlib.pyplot as plt
 # group by country and company, and sum the employees
@@ -65,13 +77,9 @@ chart1 = alt.Chart(sorted_df_company).mark_bar().encode(
     grid=False,  # hide grid lines
     domain=False,  # hide axis line and ticks
 ).properties(
-   height=300,  # set height to 400 pixels
+   height=250,  # set height to 400 pixels
 )
 
-annotated_text(
-    ("💡 Tech gaints like Amazon, Meta & Google have laid off more than"),
-    ('50k+ employees ','','#faa')
-)
 
 st.altair_chart(chart1,use_container_width=True)
 
