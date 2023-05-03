@@ -41,21 +41,7 @@ def snowflake_loader(table_name):
     return df
 
 # Table present in Snowflake
-table_name = "STREAMLIT_DEMO.STREAMLIT.LAYOFFS" 
-
-# Displaying data
-layoff_df=snowflake_loader(table_name)
-
-# Group the data by Industry and get the sum of Laid_Off_Count for each group
-industry_laid_off_count = layoff_df.groupby('INDUSTRY')['LAID_OFF_COUNT'].sum()
-
-# Convert the result to a dictionary
-result_dict = industry_laid_off_count.to_dict()
-
-word_freq_clean = {k: 0 if math.isnan(v) else v for k, v in result_dict.items()}
-# Generate the word cloud
-wordcloud = WordCloud(width=600, height=400, background_color='white').generate_from_frequencies(word_freq_clean)
-
+table_name = "STREAMLIT_DEMO.STREAMLIT.LAYOFFS_FINAL" 
 
 #### Annotated Text
 annotated_text(
@@ -66,5 +52,27 @@ annotated_text(
     " sector while industry with the lowest number of layoffs is ",
     ("Manufacturing",'', "#afa")
 )
+
+year = st.radio(
+    'Select year',
+    ['2021', '2022', '2023'],
+    index=2,horizontal=True
+)
+
+# Displaying data
+layoff_df=snowflake_loader(table_name)
+layoff_df=layoff_df[layoff_df['DATE'].dt.year == int(year)]
+
+# Group the data by Industry and get the sum of Laid_Off_Count for each group
+industry_laid_off_count = layoff_df.groupby('INDUSTRY')['LAID_OFF_COUNT'].sum()
+
+# Convert the result to a dictionary
+result_dict = industry_laid_off_count.to_dict()
+
+word_freq_clean = {k: 0 if math.isnan(v) else v for k, v in result_dict.items()}
+# Generate the word cloud
+wordcloud = WordCloud(width=600, height=350, background_color='white').generate_from_frequencies(word_freq_clean)
+
+
 # Display the word cloud using Streamlit
 st.image(wordcloud.to_array())
